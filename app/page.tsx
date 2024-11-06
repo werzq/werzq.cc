@@ -36,7 +36,7 @@ export default function DeveloperProfile() {
         <div className="space-y-4">
           <div className="prose prose-zinc dark:prose-invert max-w-none space-y-4">
             <p className="text-2xl font-mono">My name is {randomizedName}</p>
-            <p>I'm a {age}-year-old CS student living in Qatar, passionate about creating open-source tools and exploring innovative tech solutions.</p>
+            <p>I&apos;m a {age}-year-old CS student living in Qatar, passionate about creating open-source tools and exploring innovative tech solutions.</p>
           </div>
         </div>
 
