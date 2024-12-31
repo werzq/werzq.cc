@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { playfair } from '../layout'
 
-const age = new Date().getFullYear() - 2007;
+const age = new Date().getFullYear() - 2007 - (new Date().getMonth() + 1 < 7 ? 1 : 0);
 
 const QatarFlag = () => (
   <svg
