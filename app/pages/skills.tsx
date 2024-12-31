@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion'
 import { playfair } from '../layout'
-import { Layout, Database, Palette, Server, Cloud, Cpu, Code, Braces, Paintbrush, Table, GitGraphIcon as Git, Network, Box, FileJson, Figma, Users, PenTool, TableProperties, DatabaseBackup, Container, CloudCog, Blocks, Scale, Workflow, ChevronUp, ChevronDown } from 'lucide-react'
+import { Layout, Database, Palette, Server, Cpu, Code, Braces, Paintbrush, Table, GitGraphIcon as Network, Box, FileJson, Figma, Users, PenTool, TableProperties, DatabaseBackup, Blocks, Scale, Workflow, ChevronUp, ChevronDown } from 'lucide-react'
 import { useRef, useState, useEffect } from 'react'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
@@ -70,11 +70,11 @@ export default function Skills() {
   const [isTransitioning, setIsTransitioning] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
 
-  const smoothScroll = (index: number) => {
+  const smoothScroll = useCallback((index: number) => {
     if (isTransitioning) return
     setIsTransitioning(true)
     setActiveIndex(index)
-    
+
     const targetPosition = index * window.innerHeight
     const startPosition = containerRef.current?.scrollTop || 0
     const distance = targetPosition - startPosition
@@ -85,10 +85,10 @@ export default function Skills() {
       if (start === null) start = currentTime
       const timeElapsed = currentTime - start
       const progress = Math.min(timeElapsed / duration, 1)
-      
+
       // Easing function for smoother animation
-      const ease = (t: number) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t
-      
+      const ease = (t: number) => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t)
+
       const currentPosition = startPosition + distance * ease(progress)
       if (containerRef.current) {
         containerRef.current.scrollTop = currentPosition
@@ -102,7 +102,7 @@ export default function Skills() {
     }
 
     requestAnimationFrame(animation)
-  }
+  }, [isTransitioning])
 
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
@@ -127,11 +127,11 @@ export default function Skills() {
         container.removeEventListener('wheel', handleWheel)
       }
     }
-  }, [activeIndex, isTransitioning])
+  }, [activeIndex, isTransitioning, smoothScroll])
 
   const handleNav = (direction: 'prev' | 'next') => {
     if (isTransitioning) return
-    
+
     if (direction === 'next' && activeIndex < skills.length - 1) {
       smoothScroll(activeIndex + 1)
     } else if (direction === 'prev' && activeIndex > 0) {
