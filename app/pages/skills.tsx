@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { playfair } from '../layout'
 import { Layout, Database, Palette, Server, Cpu, Code, Braces, Paintbrush, Table, GitGraphIcon as Network, Box, FileJson, Figma, Users, PenTool, TableProperties, DatabaseBackup, Blocks, Scale, Workflow, ChevronUp, ChevronDown } from 'lucide-react'
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect, useCallback } from 'react'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 
