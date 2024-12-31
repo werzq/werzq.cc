@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { playfair } from '../layout'
 
 const age = new Date().getFullYear() - 2007 - (new Date().getMonth() + 1 < 7 ? 1 : 0);
+const article = /^(a|e|i|o|u)/.test(new Intl.NumberFormat('en', { style: 'decimal' }).format(age)) ? 'an' : 'a'
 
 const QatarFlag = () => (
   <svg
@@ -53,7 +54,7 @@ export default function About() {
           className="max-w-3xl space-y-6 text-justify"
         >
           <p className="text-lg leading-relaxed text-muted-foreground">
-            Im a {age}-year-old CS student from Qatar <QatarFlag /> focused on creating useful tools and exploring innovative tech solutions. With expertise in both design and development, I bring a unique perspective to every project.
+            Im {article} {age}-year-old CS student from Qatar <QatarFlag /> focused on creating useful tools and exploring innovative tech solutions. With expertise in both design and development, I bring a unique perspective to every project.
           </p>
         </motion.div>
       </div>
