@@ -1,35 +1,22 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
-import "./globals.css";
+import { Fira_Code, Playfair_Display } from 'next/font/google'
+import './globals.css'
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
-
-export const metadata: Metadata = {
-  title: "werzq.cc",
-  description: "Personal website",
-};
+const firaCode = Fira_Code({ subsets: ['latin'] })
+const playfair = Playfair_Display({ subsets: ['latin'] })
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <html lang="en" className={firaCode.className}>
+      <body className="min-h-screen bg-background font-mono antialiased select-none scroll-hidden">
         {children}
       </body>
     </html>
-  );
+  )
 }
+
+export { playfair }
+
